@@ -40,19 +40,27 @@ function playSoundOnTileChange(selectedTile) {
 
 //
 
+function getImagePath(filename) {
+    const repo = 'tareaCurriculum'; // Cambia si tu repo tiene otro nombre
+    if (location.hostname === 'elkyat.github.io') {
+        return `/${repo}/assets/resourceImages/${filename}`;
+    }
+    return `assets/resourceImages/${filename}`;
+}
+
 const pieceImagePaths = {
-    [FENChar.WhitePawn]: "assets/resourceImages/WhitePawn.png",
-    [FENChar.WhiteKnight]: "assets/resourceImages/WhiteHorse.png",
-    [FENChar.WhiteBishop]: "assets/resourceImages/WhiteBishop.png",
-    [FENChar.WhiteRook]: "assets/resourceImages/WhiteTower.png",
-    [FENChar.WhiteQueen]: "assets/resourceImages/WhiteQueen.png",
-    [FENChar.WhiteKing]: "assets/resourceImages/WhiteKing.png",
-    [FENChar.BlackPawn]: "assets/resourceImages/RedPawn.png",
-    [FENChar.BlackKnight]: "assets/resourceImages/RedHorse.png",
-    [FENChar.BlackBishop]: "assets/resourceImages/RedBishop.png",
-    [FENChar.BlackRook]: "assets/resourceImages/RedTower.png",
-    [FENChar.BlackQueen]: "assets/resourceImages/RedQueen.png",
-    [FENChar.BlackKing]: "assets/resourceImages/RedKing.png"
+    [FENChar.WhitePawn]: getImagePath("WhitePawn.png"),
+    [FENChar.WhiteKnight]: getImagePath("WhiteHorse.png"),
+    [FENChar.WhiteBishop]: getImagePath("WhiteBishop.png"),
+    [FENChar.WhiteRook]: getImagePath("WhiteTower.png"),
+    [FENChar.WhiteQueen]: getImagePath("WhiteQueen.png"),
+    [FENChar.WhiteKing]: getImagePath("WhiteKing.png"),
+    [FENChar.BlackPawn]: getImagePath("RedPawn.png"),
+    [FENChar.BlackKnight]: getImagePath("RedHorse.png"),
+    [FENChar.BlackBishop]: getImagePath("RedBishop.png"),
+    [FENChar.BlackRook]: getImagePath("RedTower.png"),
+    [FENChar.BlackQueen]: getImagePath("RedQueen.png"),
+    [FENChar.BlackKing]: getImagePath("RedKing.png")
 };
 
 const pieceImagesLoaded = {};
@@ -68,7 +76,7 @@ for (const piece in pieceImagePaths) {
 }
 
 const tileBlack = new Image();
-tileBlack.src = 'assets/resourceImages/TileRed.png';
+tileBlack.src = getImagePath('TileRed.png');
 tileBlack.onload = function() {
     console.log("Imagen cargada correctamente:", tileBlack.src);
 };
@@ -77,7 +85,7 @@ tileBlack.onerror = function() {
 };
 
 const tileWhite = new Image();
-tileWhite.src = 'assets/resourceImages/TileWhite.png';
+tileWhite.src = getImagePath('TileWhite.png');
 tileWhite.onload = function() {
     console.log("Imagen cargada correctamente:", tileWhite.src);
 };
@@ -86,7 +94,7 @@ tileWhite.onerror = function() {
 };
 
 const selectedTileImage = new Image();
-selectedTileImage.src = 'assets/resourceImages/SelectedTile.png';
+selectedTileImage.src = getImagePath('SelectedTile.png');
 selectedTileImage.onload = function() {
     console.log("Imagen cargada correctamente:", selectedTileImage.src);
 };
