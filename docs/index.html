@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilo CSS para el canvas independiente */
+        #gameCanvas {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="min-h-screen flex flex-col justify-center items-center p-6 space-y-8">
+        <div class="max-w-4xl w-full bg-white shadow-lg rounded-2xl p-8">
+            <!-- Header -->
+            <div class="flex items-center space-x-6 border-b pb-6 mb-6">
+                <img src="https://via.placeholder.com/150" alt="Foto de perfil" class="w-32 h-32 rounded-full object-cover">
+                <div>
+                    <h1 class="text-3xl font-bold">Augusto Gaite</h1>
+                    <p class="text-lg text-gray-600">Desarrollador de Software - Programador</p>
+                    <p class="text-sm text-gray-500">Córdoba, Argentina</p>
+                    <p class="text-sm text-gray-500">gaiteaugusto1@gmail.com | +5493533447492</p>
+                </div>
+            </div>
+
+            <!-- Perfil -->
+            <section class="mb-6">
+                <h2 class="text-xl font-semibold mb-2">Perfil</h2>
+                <p class="text-gray-700">Soy un estudiante de Desarrollo de Software, Me interesa la programación y el desarrollo de aplicaciones web.</p>
+            </section>
+
+            <!-- Educación -->
+            <section class="mb-6">
+                <h2 class="text-xl font-semibold mb-2">Educación</h2>
+                <div class="mb-4">
+                    <h3 class="font-bold">Tecnicatura en Desarrollo de Software</h3>
+                    <p class="text-sm text-gray-500">Instituto Superior Villa del Rosario</p>
+                </div>
+            </section>
+
+            <!-- Habilidades -->
+            <section class="mb-6">
+                <h2 class="text-xl font-semibold mb-2">Habilidades</h2>
+                <ul class="list-disc pl-6 text-gray-700">
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>PHP y MySQL</li>
+                    <li>SQL Server</li>
+                </ul>
+            </section>
+
+            <!-- Idiomas -->
+            <section class="mb-10">
+                <h2 class="text-xl font-semibold mb-2">Idiomas</h2>
+                <ul class="list-disc pl-6 text-gray-700">
+                    <li>Español</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- Canvas independiente transparente sin bordes -->
+        <div id="debug1" style="margin-bottom:8px; color:#888; font-size:14px;"></div>
+        <canvas id="gameCanvas"></canvas>
+        <script src="chess.js"></script>
+    </div>
+
+</body>
+</html>
