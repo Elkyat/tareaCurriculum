@@ -3,23 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum</title>
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Currículum Augusto Gaite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilo CSS para el canvas independiente */
-        #gameCanvas {
-            display: block;
-            margin: auto;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6fa5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .resume-card {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6fa5 100%);
+            color: white;
+            padding: 40px 30px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .animated-text {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .word-box {
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding: 0.3em 0.6em;
+            border-radius: 0.4em;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: wordAppear 0.5s forwards;
+        }
+        
+        @keyframes wordAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        #js-word {
+            background-color: #f0db4f;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+        
+        #nodejs-word {
+            background-color: #68A063;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            display: none;
+        }
+        
+        #git-word {
+            background-color: #F05032;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            display: none;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .left-column, .right-column {
+            padding: 30px;
+        }
+        
+        .left-column {
+            background: #f9f9f9;
+            border-right: 1px solid #eee;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0db4f;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 12px;
+            color: #4a6fa5;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            font-size: 1.3rem;
+            color: #4a6fa5;
+            width: 35px;
+        }
+        
+        .contact-item a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item a:hover {
+            color: #4a6fa5;
+            text-decoration: underline;
+        }
+        
+        .skills-list {
+            list-style: none;
+        }
+        
+        .skills-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .skills-list li:hover {
+            transform: translateX(5px);
+        }
+        
+        .skills-list li::before {
+            content: "▸";
+            color: #f0db4f;
+            font-weight: bold;
+            display: inline-block;
+            width: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .education-item {
+            margin-bottom: 20px;
+            padding: 18px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .education-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .date {
+            color: #4a6fa5;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        
+        .job-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+        
+        .company {
+            font-style: italic;
+            margin-bottom: 8px;
+            color: #666;
+        }
+        
+        .description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .progress.js {
+            background: #f0db4f;
+            width: 90%;
+        }
+        
+        .progress.node {
+            background: #68A063;
+            width: 85%;
+        }
+        
+        .progress.git {
+            background: #F05032;
+            width: 80%;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .left-column {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .word-box {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .resume-card {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .contact-item a {
+                color: #333;
+                text-decoration: none;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-
-    <div class="min-h-screen flex flex-col justify-center items-center p-6 space-y-8">
-        <canvas id="gameCanvas"></canvas>
+<body>
+    <div class="resume-card">
+        <div class="header">
+            <h1 class="name">Augusto Gaite</h1>
+            <div class="title">
+                <span class="animated-text">
+                    <span id="js-word" class="word-box"></span>
+                    <span id="nodejs-word" class="word-box"></span>
+                    <span id="git-word" class="word-box"></span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-address-card"></i> Contacto</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+5493533447492</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:gaiteaugusto1@gmail.com">gaiteaugusto1@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Córdoba, Argentina</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/Elkyat" target="_blank">GitHub</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/augusto-gaite-338a5a317/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-star"></i> Habilidades Técnicas</h2>
+                    <ul class="skills-list">
+                        <li>
+                            <span>JavaScript</span>
+                            <div class="progress-bar">
+                                <div class="progress js"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span>Node.js</span>
+                            <div class="progress-bar">
+                                <div class="progress node"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span>Git</span>
+                            <div class="progress-bar">
+                                <div class="progress git"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-language"></i> Idiomas</h2>
+                    <ul class="skills-list">
+                        <li>Español - Nativo</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Educación</h2>
+                    <div class="education-item">
+                        <div class="date">2022 - 2025</div>
+                        <div class="job-title">Terciario en Desarrollo de Software</div>
+                        <div class="company">Instituto Superior Villa del Rosario</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="chess.js"></script>
+
+    <script>
+        // Configuración de la animación
+        const jsWord = document.getElementById('js-word');
+        const nodejsWord = document.getElementById('nodejs-word');
+        const gitWord = document.getElementById('git-word');
+        
+        const typingSpeed = 100;
+        const pauseBetweenWords = 300;
+        
+        // Función para animar la escritura de una palabra
+        function typeWord(element, text, bgColor, textColor, borderColor) {
+            // Aplicar colores
+            element.style.backgroundColor = bgColor;
+            element.style.color = textColor;
+            element.style.borderColor = borderColor;
+            
+            // Animación de escritura
+            let charIndex = 0;
+            element.textContent = '';
+            
+            function typeChar() {
+                if (charIndex < text.length) {
+                    element.textContent += text[charIndex++];
+                    setTimeout(typeChar, typingSpeed);
+                }
+            }
+            
+            typeChar();
+        }
+        
+        // Iniciar animación de JavaScript
+        typeWord(jsWord, 'JavaScript', '#f0db4f', '#ffffff', '#ffffff');
+        
+        // Programar la animación de Node.js para después de que JavaScript termine
+        setTimeout(() => {
+            // Mostrar el contenedor de Node.js
+            nodejsWord.style.display = 'inline-block';
+            // Iniciar animación de Node.js
+            typeWord(nodejsWord, 'Node.js', '#68A063', '#ffffff', '#ffffff');
+            
+            // Programar la animación de Git para después de que Node.js termine
+            setTimeout(() => {
+                // Mostrar el contenedor de Git
+                gitWord.style.display = 'inline-block';
+                // Iniciar animación de Git
+                typeWord(gitWord, 'Git', '#F05032', '#ffffff', '#ffffff');
+            }, 'Node.js'.length * typingSpeed + pauseBetweenWords);
+        }, 'JavaScript'.length * typingSpeed + pauseBetweenWords);
+    </script>
 </body>
 </html>
-
